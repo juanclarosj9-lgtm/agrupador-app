@@ -20,7 +20,7 @@ with st.sidebar:
 
 # 2. Filtros previos (Idea 3)
 if uploaded_file is not None:
-    # Leemos los datos y los guardamos en session_state para no perderlos al recargar
+    # Leemos los datos
     if 'df' not in st.session_state:
         st.session_state.df = pd.read_csv(uploaded_file)
     
@@ -107,4 +107,4 @@ if uploaded_file is not None:
             data=csv,
             file_name='resultados_agrupados.csv',
             mime='text/csv'
-        )ÚseloControl + Shift + m para alternar el enfoquetab de movimiento de la tecla. Alternativamente, úselo para pasar al siguiente elemento interactivo de la página.esctab
+        )
