@@ -1,0 +1,328 @@
+streamlit 
+Pillow
+import streamlit as st
+from PIL import Image
+import io
+
+# 1. Configuración de la página
+# 1. Configuración de la página
+st.set_page_config(
+    page_title="Cuidados Integrales de Salud",
+    page_icon="🩺",
+    layout="wide",
+)
+
+# 2. Estilos (Colores Verde Menta y Naranja)
+st.markdown("""
+<style>
+    :root {
+        --primary-color: #20c997;
+        --secondary-color: #FF9F1C;
+    }
+    .stButton>button {
+        background-color: var(--secondary-color);
+        color: white;
+        font-weight: bold;
+    }
+</style>
+""", unsafe_allow_html=True)
+
+# TÍTULO ÚNICO
+
+
+# Aplicar tema verde menta y naranja
+st.markdown("""
+<style>
+    :root {
+        --primary-color: #20c997;
+        --secondary-color: #FF9F1C;
+    }
+    .stButton>button {
+        background-color: var(--secondary-color);
+        color: white;
+        font-weight: bold;
+    }
+    .stSuccess {
+        background-color: #d4edda;
+        color: #155724;
+    }
+</style>
+""", unsafe_allow_html=True)
+
+# Estilos personalizados para botones y secciones
+st.markdown("""
+<style>
+    .stButton>button {
+        background-color: #FF9F1C;
+        color: white;
+        font-weight: bold;
+    }
+    .stSuccess {
+        background-color: #d4edda;
+        color: #155724;
+    }
+</style>
+""", unsafe_allow_html=True)
+
+# 2. Encabezado e Imagen Principal
+st.title("🌿 Cuidados Integrales de Salud")
+st.markdown("<h3 style='color:#FF9F1C;'>Servicios de Enfermería en General</h3>", unsafe_allow_html=True)
+
+# Imagen del grupo (Usamos una de placeholder, cámbiala por tu foto real: "grupo_enfermeros.jpg")
+# 2. Imagen Principal desde internet
+imagen_url = "https://images.unsplash.com/photo-1551076805-e1869033e561?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+# 2. Imagen Principal desde tu PC
+st.image("IMG_1234.JPG.jpg", use_container_width=True)
+st.write("Atención profesional, cálida y especializada. Tu salud en las mejores manos.")
+
+# 3. Menú Lateral
+st.sidebar.header("🔗 Navegación")
+opcion = st.sidebar.radio(
+    "Menú:",
+    ["Inicio", "Servicios", "Calculadora IMC", "Quiz Interactivo", "Agendar Cita", "Ubicación Exacta", "Buscador de Salud"]
+)
+
+# --- SECCIÓN: INICIO ---
+if opcion == "Inicio":
+    st.header("Por qué Elegirnos")
+    st.info("Promovemos Bienestar, Prevenimos Enfermedades y Acompañamos tu Recuperación.")
+    
+    # Aquí puedes dejar las columnas de "Por qué elegirnos" o borrarlas si prefieres
+    col1, col2, col3 = st.columns(3)
+    with col1: st.success("✅ Profesionales Matriculados")
+    with col2: st.success("✅ Atención Personalizada")
+    with col3: st.success("✅ Aplicacion de Tecnologia")
+
+# --- SERVICIOS ---
+# --- SERVICIOS (Catálogo Completo) ---
+elif opcion == "Servicios":
+    st.header("🏥 Catálogo de Servicios C.I.S.")
+    st.info("Haz clic en cada categoría para ver el detalle de las prestaciones.")
+
+    # 1. Higiene y Confort
+    with st.expander("1. Cuidados de higiene y confort"):
+        items = [
+            "Baño en cama.", "Higiene corporal parcial o completa.", "Higiene bucal.", 
+            "Higiene perineal.", "Cambio de pañales.", "Cambio de ropa y ropa de cama.", 
+            "Cuidado de la piel.", "Hidratación de la piel.", "Asistencia para vestirse.", 
+            "Acomodación y posicionamiento.", "Cambios posturales.", 
+            "Prevención de lesiones por presión.", "Asistencia en uso del sanitario.", 
+            "Cuidado de la intimidad."
+        ]
+        for item in items:
+            st.markdown(f"- {item}")
+
+    # 2. Alta Complejidad
+    with st.expander("2. Enfermería de alta complejidad e internación domiciliaria"):
+        items = [
+            "Sonda vesical y control de diuresis.", "Sonda nasogástrica y gastrostomía.", 
+            "Traqueostomía y oxigenoterapia.", "Accesos venosos y bombas de infusión.", 
+            "Drenajes y ostomías.", "Aspiración de secreciones.", "Nebulizaciones.", 
+            "Tratamientos endovenosos.", "Alimentación enteral.", "Balance hídrico.", 
+            "Guardias de 4, 8, 12 y 24 horas.", "Atención posoperatoria.", 
+            "Seguimiento de enfermedades crónicas complejas."
+        ]
+        for item in items:
+            st.markdown(f"- {item}")
+
+    # 3. Posoperatorio
+    with st.expander("3. Enfermería posoperatoria y recuperación"):
+        items = [
+            "Control de signos vitales.", "Curación de heridas quirúrgicas.", 
+            "Control del dolor.", "Observación de signos de infección.", 
+            "Prevención de complicaciones.", "Educación sobre cuidados.", 
+            "Comunicación con equipo médico."
+        ]
+        for item in items:
+            st.markdown(f"- {item}")
+
+    # 4. Adultos Mayores y Crónicos
+    with st.expander("4. Enfermería para adultos mayores y enfermedades crónicas"):
+        items = [
+            "Control de glucemia y diabetes.", "Prevención de caídas.", 
+            "Cuidados en demencia/Alzheimer/Parkinson.", "Control de presión arterial.", 
+            "Seguimiento de insuficiencia cardíaca.", "Cuidados EPOC y respiratorios.", 
+            "Enfermedades renales y oncológicas.", "Apoyo a familiares."
+        ]
+        for item in items:
+            st.markdown(f"- {item}")
+
+    # 5. Rehabilitación
+    with st.expander("5. Enfermería en rehabilitación y cuidados funcionales"):
+        items = [
+            "Recuperación de ACV y traumatismos.", "Colaboración con Kinesiología.", 
+            "Asistencia en actividades básicas.", "Promoción de autonomía.", 
+            "Uso seguro de ayudas técnicas."
+        ]
+        for item in items:
+            st.markdown(f"- {item}")
+
+    # 6. Acompañamiento
+    with st.expander("6. Servicios de acompañamiento y cuidado domiciliario"):
+        items = [
+            "Compañía durante el día.", "Acompañamiento a consultas.", 
+            "Ayuda para organizar rutinas.", "Preparación del entorno seguro.", 
+            "Asistencia en alimentación y desplazamiento."
+        ]
+        for item in items:
+            st.markdown(f"- {item}")
+
+    # 7. Especializados
+    with st.expander("7. Servicios de Enfermería especializados"):
+        items = [
+            "Terapia intensiva.", "Quirúrgica.", "Oncología.", "Nefrología.", 
+            "Cardiología.", "Salud materno-infantil.", "Emergencias.", 
+            "Control de infecciones.", "Heridas.", "Cuidados paliativos."
+        ]
+        for item in items:
+            st.markdown(f"- {item}")
+
+    # 8. Gestión
+    with st.expander("8. Gestión, educación y coordinación de Enfermería"):
+        items = [
+            "Planes de cuidados.", "Coordinación de turnos.", "Supervisión.", 
+            "Historias clínicas.", "Protocolos de atención.", "Capacitación.", 
+            "Coordinación interdisciplinaria."
+        ]
+        for item in items:
+            st.markdown(f"- {item}")
+
+# --- SECCIÓN: CALCULADORA IMC ---
+# --- CALCULADORA IMC CON ENLACES EXTERNOS ---
+elif opcion == "Calculadora IMC":
+    st.header("🧮 Calculadora de IMC y Recursos")
+    peso = st.number_input("Peso (kg)", min_value=20.0, max_value=300.0, step=0.1)
+    altura = st.number_input("Altura (m)", min_value=1.0, max_value=2.5, step=0.01)
+    
+    if st.button("Calcular y Ver Recursos"):
+        if altura > 0:
+            imc = peso / (altura ** 2)
+            st.metric("Tu IMC es", f"{imc:.2f}")
+            
+            if imc < 18.5:
+                st.warning("📉 Bajo peso")
+                st.info("Lee las recomendaciones de la OMS sobre nutrición:")
+                st.markdown("[**Ver Guía de Nutrición OMS**](https://www.who.int/es/news-room/fact-sheets/detail/healthy-diet)")
+                
+            elif 18.5 <= imc < 24.9:
+                st.success("✅ Peso Normal")
+                st.info("Mantén tu estilo de vida saludable:")
+                st.markdown("[**Actividad Física y Salud**](https://www.who.int/es/news-room/fact-sheets/detail/physical-activity)")
+                
+            elif 25 <= imc < 29.9:
+                st.warning("⚠️ Sobrepeso")
+                st.info("Consejos para prevenir enfermedades:")
+                st.markdown("[**Prevención de enfermedades crónicas**](https://www.who.int/es/news-room/fact-sheets/detail/nutrition-and-noncommunicable-diseases)")
+                
+            else:
+                st.error("🔴 Obesidad")
+                st.info("Es importante buscar orientación profesional:")
+                st.markdown("[**Obesidad y sobrepeso**](https://www.who.int/es/news-room/fact-sheets/detail/obesity-and-overweight)")
+            
+            # Nuevamente tus tips locales
+            st.success("""
+                **💡 Tips de Cuidados Integrales:**
+                1. 🚶‍♀️ Caminata diaria de 40 minutos.
+                2. 💧 Hidratación constante (2L de agua).
+                3. 🩺 Control médico periódico.
+            """)
+
+# --- SECCIÓN: QUIZ INTERACTIVO ---
+# --- QUIZ PROFESIONAL ---
+elif opcion == "Quiz Interactivo":
+    st.header("🧠 Evaluación de Conocimientos en Salud")
+    st.info("Pon a prueba tus conocimientos en patologías comunes y protocolos.")
+    
+    # Pregunta 1: Hipertensión
+    st.subheader("1. ¿Cuál es el valor considerado normal para la presión arterial en un adulto?")
+    p1 = st.radio("", ["120/80 mmHg", "140/90 mmHg", "90/60 mmHg", "160/100 mmHg"], key="q1")
+    
+    if st.button("Verificar Respuesta 1"):
+        if p1 == "120/80 mmHg":
+            st.success("✅ ¡Correcto! La presión ideal es 120/80 mmHg.")
+        else:
+            st.error("❌ Incorrecto. 140/90 mmHg ya se considera hipertensión.")
+
+    st.divider()
+
+    # Pregunta 2: Diabetes
+    st.subheader("2. ¿Qué parámetro se utiliza para el control a largo plazo de la diabetes?")
+    p2 = st.radio("", ["Glucemia en ayunas", "Hemoglobina Glicosilada (HbA1c)", "Insulina en sangre", "Colesterol total"], key="q2")
+    
+    if st.button("Verificar Respuesta 2"):
+        if p2 == "Hemoglobina Glicosilada (HbA1c)":
+            st.success("✅ ¡Correcto! La HbA1c refleja el control de glucosa en los últimos 3 meses.")
+        else:
+            st.error("❌ Incorrecto. La glucemia en ayunas es un dato puntual, no a largo plazo.")
+
+    st.divider()
+
+    # Pregunta 3: Enfermedades Respiratorias
+    st.subheader("3. En un paciente con EPOC, ¿cuál es la posición más recomendada para facilitar la respiración?")
+    p3 = st.radio("", ["Decúbito supino", "Semi-Fowler o Fowler", "Decúbito prono", "Trendelenburg"], key="q3")
+    
+    if st.button("Verificar Respuesta 3"):
+        if p3 == "Semi-Fowler o Fowler":
+            st.success("✅ ¡Correcto! Estas posiciones permiten la mejor expansión pulmonar.")
+        else:
+            st.error("❌ Incorrecto. El decúbito supino puede dificultar la respiración en estos pacientes.")
+
+    st.divider()
+
+    # Pregunta 4: Triage
+    st.subheader("4. ¿Cuál es el objetivo principal del Triage en una urgencia?")
+    p4 = st.radio("", ["Atender al paciente que llega primero", "Clasificar la gravedad para priorizar la atención", "Registrar los datos del paciente", "Administrar analgésicos inmediatos"], key="q4")
+    
+    if st.button("Verificar Respuesta 4"):
+        if p4 == "Clasificar la gravedad para priorizar la atención":
+            st.success("✅ ¡Correcto! El Triage busca optimizar recursos salvando vidas.")
+        else:
+            st.error("❌ Incorrecto. El Triage no se basa en el orden de llegada, sino en la gravedad.")
+
+# --- SECCIÓN: FORMULARIO DE CITAS ---
+# --- CITAS ---
+elif opcion == "Agendar Cita":
+    st.header("📅 Agenda tu Cita")
+    st.info("Selecciona el servicio que necesitas para que el equipo de C.I.S. te prepare.")
+    
+    nombre = st.text_input("Nombre Completo")
+    telefono = st.text_input("Teléfono")
+    
+    # Nuevo menú de servicios actualizado
+    lista_servicios = [
+        "1. Cuidados de higiene y confort",
+        "2. Enfermería de alta complejidad",
+        "3. Enfermería posoperatoria",
+        "4. Adultos mayores y crónicos",
+        "5. Rehabilitación y cuidados funcionales",
+        "6. Acompañamiento domiciliario",
+        "7. Servicios especializados",
+        "8. Gestión y coordinación"
+    ]
+    
+    servicio = st.selectbox("Servicio de interés:", lista_servicios)
+    
+    if st.button("📧 Enviar Solicitud"):
+        if nombre and telefono:
+            st.markdown(f'<a href="mailto:ecissalud@gmail.com?subject=Cita de {nombre}&body=Hola, soy {nombre}, teléfono: {telefono}, servicio: {servicio}">Haz clic aquí para enviar el correo</a>', unsafe_allow_html=True)
+
+# --- UBICACIÓN EXACTA ---
+elif opcion == "Ubicación Exacta":
+    st.header("📍 Nuestra Ubicación")
+    st.write("**Dirección:** Sta Fe Este 10, San Juan Capital")
+    st.write("**Código Postal:** J5402AAB")
+    
+
+# --- BUSCADOR DE SALUD ---
+elif opcion == "Buscador de Salud":
+    st.header("🔍 Investigador Médico")
+    st.info("Investiga en fuentes confiables al instante.")
+    
+    termino = st.text_input("Escribe tu consulta (ej: Diabetes, Hipertensión):")
+    
+    if st.button("🔎 Buscar Recomendaciones"):
+        if termino:
+            st.success(f"Abriendo búsqueda para: **{termino}**...")
+            st.markdown(f'[**Ver resultados de Salud**](https://www.google.com/search?q={termino}+recomendaciones+OMS+enfermeria)')
+        else:
+            st.warning("Por favor, escribe algo para buscar.")
